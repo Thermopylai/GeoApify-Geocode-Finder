@@ -39,12 +39,17 @@ namespace GeoApify_Geocode_Finder
             if (File.Exists("setup.ini"))
             {
                 API_KEY = File.ReadAllText("setup.ini");
+                txtAddr.Focus();
             }
             else if (API_KEY == string.Empty)
             {
                 Setup setup = new Setup();
                 setup.Owner = this;
                 setup.ShowDialog();
+                Dispatcher.InvokeAsync(() =>
+                {
+                    txtAddr.Focus();
+                });
             }
         }
 

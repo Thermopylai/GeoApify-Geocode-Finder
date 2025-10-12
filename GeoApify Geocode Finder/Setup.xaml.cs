@@ -24,6 +24,7 @@ namespace GeoApify_Geocode_Finder
         public Setup()
         {
             InitializeComponent();
+            txtSetup.Focus();
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
