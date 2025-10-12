@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.IO;
+using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Windows;
@@ -19,7 +20,7 @@ namespace GeoApify_Geocode_Finder
     public partial class MainWindow : Window
     {
         public Root root = new Root();
-        public const string API_KEY = "8d53629cc46741fb9e6c97eb48d66533";
+        public static string API_KEY = string.Empty;
         public string searchString = string.Empty;
         public string searchURL => $"https://api.geoapify.com/v1/geocode/search?text={searchString}&format=json&apiKey={API_KEY}";
 
@@ -27,6 +28,24 @@ namespace GeoApify_Geocode_Finder
         {
             InitializeComponent();
             Clear();
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Setup();
+        }
+
+        private void Setup()
+        {
+            if (File.Exists("setup.ini"))
+            {
+                API_KEY = File.ReadAllText("setup.ini");
+            }
+            else if (API_KEY == string.Empty)
+            {
+                Setup setup = new Setup();
+                setup.Owner = this;
+                setup.ShowDialog();
+            }
         }
 
         private async void Button_Click_Send(object sender, EventArgs e)
@@ -93,21 +112,24 @@ namespace GeoApify_Geocode_Finder
     
 
         private void ShowCoords()
-            {
-                lblLat.Content = root.results[0].lat;
-                lblLong.Content = root.results[0].lon;
-            }
+        {
+             lblLat.Content = root.results[0].lat;
+             lblLong.Content = root.results[0].lon;
+             lblLat.Foreground = Brushes.Green;
+             lblLong.Foreground = Brushes.Green;
+        }
         private void Clear()
-            {
-                lblLat.Content = string.Empty;
-                lblLong.Content = string.Empty;
-                lblStatus.Content = string.Empty;
-                txtAddr.Text = string.Empty;
-            }
+        {
+             lblLat.Content = string.Empty;
+             lblLong.Content = string.Empty;
+             lblStatus.Content = string.Empty;
+             txtAddr.Text = string.Empty;
+        }
 
         private void Button_Click_Clear(object sender, EventArgs e)
         {
             Clear();
+            txtAddr.Focus();
         }
 
         private string Convert(string str)
@@ -358,5 +380,7 @@ namespace GeoApify_Geocode_Finder
             {@"þ",  @"%C3%BE"},
             {@"ÿ",  @"%C3%BF"}
         };
+
+        
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GeoApify_Geocode_Finder"
         mc:Ignorable="d"
-        Title="GeoApify Geocode Finder" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
+        Title="GeoApify Geocode Finder" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
