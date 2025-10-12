@@ -28,6 +28,7 @@ namespace GeoApify_Geocode_Finder
         {
             InitializeComponent();
             Clear();
+            SetupHotkeys();
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -45,12 +46,35 @@ namespace GeoApify_Geocode_Finder
             {
                 Setup setup = new Setup();
                 setup.Owner = this;
+                setup.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                 setup.ShowDialog();
+
                 Dispatcher.InvokeAsync(() =>
                 {
                     txtAddr.Focus();
                 });
             }
+        }
+        private void SetupHotkeys()
+        {
+            try
+            {
+                RoutedCommand send = new RoutedCommand();
+                send.InputGestures.Add(new KeyGesture(Key.Enter));
+                CommandBindings.Add(new CommandBinding(send, Button_Click_Send));
+
+                RoutedCommand close = new RoutedCommand();
+                close.InputGestures.Add(new KeyGesture(Key.X, ModifierKeys.Alt));
+                CommandBindings.Add(new CommandBinding(close, windowClose));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error setting up hotkeys: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        private void windowClose(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
 
         private async void Button_Click_Send(object sender, EventArgs e)

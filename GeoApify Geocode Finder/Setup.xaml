@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GeoApify_Geocode_Finder"
         mc:Ignorable="d"
-        Title="Setup" SizeToContent="Height" Width="200" WindowStartupLocation="CenterScreen">
+        Title="Setup" SizeToContent="Height" Width="200">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -13,7 +13,7 @@
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
         <Label Content="Enter your API key:"  Grid.Row="0"/>
-        <TextBox x:Name="txtSetup" Grid.Row="1" Focusable="True"/>
+        <TextBox x:Name="txtSetup" Grid.Row="1" />
         <Button Grid.Row="2" Content="Save" Width="80" Height="36"  VerticalAlignment="Center" HorizontalAlignment="Center" Click="Button_Click"/>
     </Grid>
 </Window>

@@ -24,6 +24,7 @@ namespace GeoApify_Geocode_Finder
         public Setup()
         {
             InitializeComponent();
+            SetupHotkeys();
             txtSetup.Focus();
         }
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -41,5 +42,23 @@ namespace GeoApify_Geocode_Finder
                 MessageBox.Show("Please enter a valid API key.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
+        private void SetupHotkeys()
+        {
+            try
+            {
+                RoutedCommand close = new RoutedCommand();
+                close.InputGestures.Add(new KeyGesture(Key.X, ModifierKeys.Alt));
+                CommandBindings.Add(new CommandBinding(close, windowClose));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error setting up hotkeys: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        private void windowClose(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
     }
 }
