@@ -46,6 +46,10 @@ namespace GeoApify_Geocode_Finder
         {
             try
             {
+                RoutedCommand save = new RoutedCommand();
+                save.InputGestures.Add(new KeyGesture(Key.Enter));
+                CommandBindings.Add(new CommandBinding(save, Button_Click));
+
                 RoutedCommand close = new RoutedCommand();
                 close.InputGestures.Add(new KeyGesture(Key.X, ModifierKeys.Alt));
                 CommandBindings.Add(new CommandBinding(close, windowClose));
