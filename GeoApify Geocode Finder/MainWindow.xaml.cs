@@ -97,7 +97,7 @@ namespace GeoApify_Geocode_Finder
                 btnSend.IsEnabled = true; // Re-enable button
             }
             else
-                MessageBox.Show("Please, enter an identifier!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Please, enter an address!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private async Task GetCoordsAsync()

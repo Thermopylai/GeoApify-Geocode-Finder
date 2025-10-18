@@ -12,7 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using static GeoApify_Geocode_Finder.MainWindow;
+
 
 namespace GeoApify_Geocode_Finder
 {
